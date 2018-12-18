@@ -7,6 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * This class is used to show GUI
+ * 
+ * @author Yuexiang Li
+ * @since 10.0
+ */
 public class GUI extends JFrame implements ActionListener {
 	// Database connection
 	DatabaseConnection DC = new DatabaseConnection();
@@ -20,6 +26,9 @@ public class GUI extends JFrame implements ActionListener {
 	private JButton button1 = new JButton("Sample Query");
 	private JButton button2 = new JButton("Custom");
 
+	/**
+	 * The constructor
+	 */
 	public GUI() {
 		// Initialize interface
 		initializeInterface();
@@ -31,8 +40,8 @@ public class GUI extends JFrame implements ActionListener {
 		this.setVisible(true);
 	}
 
-	/*
-	 * 
+	/**
+	 * Initializer interface
 	 */
 	public void initializeInterface() {
 		// Add textfield
@@ -50,6 +59,9 @@ public class GUI extends JFrame implements ActionListener {
 		this.getContentPane().add(basicPanel);
 	}
 
+	/**
+	 * Identify the event source and perform relevant action.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton eventSource = (JButton) e.getSource();
@@ -59,18 +71,17 @@ public class GUI extends JFrame implements ActionListener {
 			// Remove the compoent on contentPane
 			// this.removeAll(); this will remove JFrame's Pane
 			this.getContentPane().removeAll();
+			// Switch to sample switch
 			this.getContentPane().add(new QuerySample(DC));
 			// this.repaint();
 			// This statement is required
 			this.validate();
 		} else {
+			// Remove the compoent on contentPane
 			this.getContentPane().removeAll();
+			// Switch to custom panel
 			this.getContentPane().add(new Custom(DC));
 			this.validate();
 		}
-	}
-
-	public static void main(String[] args) {
-		GUI start = new GUI();
 	}
 }
